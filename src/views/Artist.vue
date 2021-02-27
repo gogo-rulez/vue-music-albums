@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div class="artist">
         <img
             alt="Vue logo"
             src="../assets/logo.png">
@@ -10,7 +10,7 @@
 // @ is an alias to /src
 
 export default {
-    name: 'Home',
+    name: 'Artist',
     components: {
     },
 };
