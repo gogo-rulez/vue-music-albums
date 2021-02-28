@@ -50,6 +50,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import { api } from '@/mixins/commonMixins';
 
 export default {
     name: 'SearchBar',
@@ -99,14 +100,14 @@ export default {
 
         showSuggestions () {
 
-            const apiUrl = `http://localhost:3004/albums/?q=${this.searchValue}&_limit=5`;
+            const apiUrl = `albums/?q=${this.searchValue}&_limit=5`;
 
-            fetch(apiUrl, {
-                method: 'GET',
-            })
-                .then(val => val.json())
+            api.get(apiUrl)
                 .then(val => {
-                    this.suggestions = [...val];
+                    this.suggestions = val.data;
+                })
+                .catch(error => {
+                    console.log(error);
                 });
 
         },

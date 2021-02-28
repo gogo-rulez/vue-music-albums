@@ -4,9 +4,11 @@ $a: album;
     display: flex;
     flex-flow: row wrap;
     padding: 15px;
-    background-color: #fff;
+    background-color: $white01;
     box-shadow: 0px 1px 3px #E7E7E7;
     flex-basis: 100%;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 
     @include min-screen($phablet) {
         flex-basis: calc((100% - 20px) / 2);
@@ -19,21 +21,24 @@ $a: album;
         transition: transform 0.25s;
 
         &:hover {
-            transform: scale(1.01);
+            transform: perspective(0) scale(1.01);
         }
     }
 
     &__list {
         display: grid;
         grid-template-columns: 100%;
+        grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
         grid-gap: 20px;
 
         @include min-screen($phablet) {
             grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
         }
 
         @include min-screen($desktop) {
             grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
             grid-gap: 10px;
 
         }
@@ -110,7 +115,7 @@ $a: album;
     }
 
     &__artist {
-        display: block;
+        display: inline-block;
         font-size: rem(12);
         line-height: rem(14);
         letter-spacing: -0.438px;

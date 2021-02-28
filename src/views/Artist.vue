@@ -19,7 +19,7 @@
 // @ is an alias to /src
 import AlbumListItem from '@/components/AlbumListItem';
 import { mapGetters } from 'vuex';
-import { artistMixin } from '@/mixins/commonMixins';
+import { artistMixin, api } from '@/mixins/commonMixins';
 
 export default {
     name: 'Artist',
@@ -56,15 +56,15 @@ export default {
 
         getArtistAlbums () {
 
-            const apiUrl = `http://localhost:3004/albums/?artistId=${this.$route.params.artistId}`;
+            const apiUrl = `albums/?artistId=${this.$route.params.artistId}`;
 
-            fetch(apiUrl, {
-                method: 'GET',
-            })
-                .then(val => val.json())
+            api.get(apiUrl)
                 .then(val => {
-                    this.artistAlbums = [...val];
+                    this.artistAlbums = val.data;
                     this.pageReady = true;
+                })
+                .catch(error => {
+                    console.log(error);
                 });
 
         },

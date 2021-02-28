@@ -60,6 +60,7 @@ export default {
 
     mounted () {
         const localStorageItem = JSON.parse(localStorage.getItem('userFavorites'));
+        if (!localStorageItem) return;
         this.isFavorite = localStorageItem.find(x => x === this.albumData.id);
     },
 

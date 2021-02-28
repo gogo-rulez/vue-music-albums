@@ -1,8 +1,8 @@
 <template>
     <div class="page 404">
-        <h1 class="page__title">
+        <h3 class="page__title">
             Someone made a boo-boo because this page doesn't exist :)
-        </h1>
+        </h3>
     </div>
 </template>
 

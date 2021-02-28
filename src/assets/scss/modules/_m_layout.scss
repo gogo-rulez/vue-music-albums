@@ -4,6 +4,7 @@ body {
     background-color: $grey01;
     font: $fontReg;
     color: $black02;
+    -webkit-font-smoothing: antialiased;
 
     @include min-screen($desktop) {
         padding: 100px 0 0;
@@ -17,5 +18,15 @@ body {
         padding: 52px 20px;
         max-width: 1120px;
         margin: 0 auto;
+    }
+
+    &__title {
+        font-size: rem(20);
+        line-height: rem(24);
+
+        @include min-screen($desktop) {
+            font-size: rem(24);
+            line-height: rem(28);
+        }
     }
 }

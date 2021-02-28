@@ -1,6 +1,5 @@
 <template>
     <div
-        v-if="pageReady"
         id="app">
         <site-header/>
         <router-view/>
@@ -14,12 +13,6 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
     name: 'App',
 
-    data () {
-        return {
-            pageReady: false
-        };
-    },
-
     components: {
         SiteHeader
     },
@@ -31,17 +24,17 @@ export default {
     mounted () {
         this.getAlbums();
         this.getArtists();
-        this.setPlatform();
     },
 
     watch: {
-        storeReady (val) {
-            this.pageReady = val;
+        $route () {
+            // watch for route change because if the $route.query changes, we have to reload the albums
+            this.getAlbums();
         }
     },
 
     methods: {
-        ...mapActions(['getAlbums', 'getArtists', 'setPlatform']),
+        ...mapActions(['getAlbums', 'getArtists']),
     }
 };
 </script>

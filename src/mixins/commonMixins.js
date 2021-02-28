@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const artistMixin = {
     methods: {
         $_getArtistName (artistId) {
@@ -6,3 +8,8 @@ export const artistMixin = {
         }
     }
 };
+
+
+export const api = axios.create({
+    baseURL: 'http://localhost:3004/',
+});

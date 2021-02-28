@@ -12,7 +12,7 @@
                         Album List
                     </router-link>
                     &rsaquo;
-                    <span>{{ showArtistName }}</span>
+                    <span>{{ showArtistName() }}</span>
                 </template>
                 <template
                     v-else-if="$route.name === 'NotFound'">
@@ -23,8 +23,7 @@
                     &rsaquo;
                     <span>404</span>
                 </template>
-                <template
-                    v-else>
+                <template v-else >
                     <router-link
                         v-if="Object.keys($route.query).length"
                         :to="{ name: 'Home' }">
@@ -72,20 +71,28 @@ export default {
 
     computed: {
         ...mapGetters(['artistsFromStore', 'storeReady', 'isDesk']),
-
-        showArtistName () {
-            if (this.$route.params.artistName) {
-                return this.$route.params.artistName;
-            }
-            return this.artistsFromStore.find(x => x.id === Number(this.$route.params.artistId)).title;
-        }
     },
 
     watch: {
         $route () {
             this.showSearchBar = false;
         },
+    },
+
+    methods: {
+        showArtistName () {
+            if (this.$route.params.artistName) {
+                return this.$route.params.artistName;
+            }
+            const artist = this.artistsFromStore.find(x => x.id === Number(this.$route.params.artistId));
+
+            if (artist) return artist.title;
+
+            // if an artist with this id doesn't exist, show 404 page
+            this.$router.push({ name: 'NotFound' });
+        }
     }
+
 };
 </script>
 

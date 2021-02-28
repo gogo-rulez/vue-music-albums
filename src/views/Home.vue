@@ -1,9 +1,16 @@
 <template>
     <div
-        v-if="pageReady"
         class="page home">
 
-        <ul class="album__list">
+        <h3
+            v-if="$route.query.q && noAlbumData"
+            class="page__title">
+            There are no results for the term "{{ $route.query.q }}"
+        </h3>
+
+        <ul
+            v-else-if="storeReady"
+            class="album__list">
             <album-list-item
                 v-for="album in albumsFromStore"
                 :key="album.id"
@@ -38,18 +45,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['albumsFromStore', 'artistsFromStore', 'storeReady'])
-    },
-
-    watch: {
-        storeReady (val) {
-            this.pageReady = val;
-        },
-
-        $route () {
-            // route will change when coming from '/' with query params to just '/' without query params
-            this.getAlbums();
-        }
+        ...mapGetters(['albumsFromStore', 'artistsFromStore', 'storeReady', 'noAlbumData'])
     },
 
     mounted () {
