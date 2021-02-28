@@ -1,0 +1,117 @@
+$h: header;
+
+.#{$h} {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: #fff;
+
+    &::after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.183679);
+        pointer-events: none;
+
+        @include min-screen($desktop) {
+            z-index: 0;
+        }
+    }
+
+
+    &__inner_wrap {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 60px;
+        padding: 0 0 0 20px;
+
+        @include min-screen($desktop) {
+            max-width: 1120px;
+            height: 100px;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+    }
+
+    &__title {
+        width: calc(100% - 50px);
+        white-space: nowrap;
+        overflow-x: auto;
+        font: $fontMedium;
+        font-size: rem(20);
+
+        @include min-screen($desktop) {
+            width: calc(100% - 450px);
+            white-space: normal;
+            font-size: rem(24);
+            letter-spacing: -0.876px;
+        }
+
+        a {
+            color: $black02;
+        }
+
+        span {
+            display: inline-block;
+        }
+    }
+
+    &__search_toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+
+        &.is-active {
+            position: relative;
+
+            &::after {
+                content: " ";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 1px;
+                height: 20px;
+                margin: auto;
+                background-color: $black02;
+                transform: rotate(-45deg);
+            }
+
+            &::before {
+                content: " ";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 1px;
+                height: 20px;
+                margin: auto;
+                background-color: $black02;
+                transform: rotate(45deg);
+            }
+        }
+
+        @include min-screen($desktop) {
+            display: none;
+        }
+
+        img {
+            display: block;
+            width: 15px;
+            height: 15px;
+        }
+    }
+}

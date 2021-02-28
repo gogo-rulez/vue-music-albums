@@ -4,6 +4,10 @@
 @import "includes/site_settings";
 
 
+@import "components/c_header";
+@import "components/c_search";
+@import "components/c_album_list_item";
+
 @import "modules/m_layout";
 
 @import "views/v_home";

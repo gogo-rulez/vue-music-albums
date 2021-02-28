@@ -1,28 +1,21 @@
 body {
-    padding: 70px 0 0;
+    min-height: 100vh;
+    padding: 60px 0 0;
+    background-color: $grey01;
     font: $fontReg;
-    color: $black;
+    color: $black02;
 
-    @media print {
-        padding: 0;
+    @include min-screen($desktop) {
+        padding: 100px 0 0;
     }
 }
 
-.site_wrap {
-    padding: 0 15px;
+.page {
+    padding: 20px 15px;
 
     @include min-screen($desktop) {
-        padding: 0 30px;
-        max-width: $desktop;
+        padding: 52px 20px;
+        max-width: 1120px;
         margin: 0 auto;
-    }
-
-    @include min-screen($widescreen) {
-        max-width: $widescreen;
-    }
-
-    @media print {
-        width: 100%;
-        padding: 0;
     }
 }
