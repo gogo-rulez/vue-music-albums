@@ -13,7 +13,6 @@ export default new Vuex.Store({
         platform: '',
         albumsLoaded: false,
         artistsLoaded: false,
-        storeReady: false,
         noAlbumData: true,
     },
     getters: {
@@ -43,10 +42,10 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        getArtists ({ commit }) {
+        async getArtists ({ commit }) {
             const apiUrl = 'artists';
 
-            api.get(apiUrl)
+            await api.get(apiUrl)
                 .then(val => {
                     commit('SET_ARTISTS', val.data);
                 })

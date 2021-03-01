@@ -1,6 +1,5 @@
 <template>
-    <div
-        id="app">
+    <div id="app">
         <site-header/>
         <router-view/>
     </div>
@@ -9,6 +8,7 @@
 <script>
 import SiteHeader from '@/components/SiteHeader';
 import { mapActions, mapGetters } from 'vuex';
+import { artistMixin } from '@/mixins/commonMixins';
 
 export default {
     name: 'App',
@@ -17,8 +17,10 @@ export default {
         SiteHeader
     },
 
+    mixins: [artistMixin],
+
     computed: {
-        ...mapGetters(['storeReady'])
+        ...mapGetters(['storeReady', 'artistsFromStore'])
     },
 
     mounted () {
@@ -30,7 +32,7 @@ export default {
         $route () {
             // watch for route change because if the $route.query changes, we have to reload the albums
             this.getAlbums();
-        }
+        },
     },
 
     methods: {

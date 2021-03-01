@@ -1,7 +1,7 @@
 # vue-music-albums
 This is a showcase music albums app built with Vue.
-There is a db-music.json inside the project which contains the data
-Setup explained bellow
+There is a db-music.json file inside the project which contains the data.
+Setup explained bellow.
 
 ## Project setup
 ```

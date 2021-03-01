@@ -1,5 +1,6 @@
 <template>
     <header
+        v-if="storeReady"
         class="header">
 
         <div class="header__inner_wrap">
@@ -70,7 +71,7 @@ export default {
     },
 
     computed: {
-        ...mapGetters(['artistsFromStore', 'storeReady', 'isDesk']),
+        ...mapGetters(['storeReady', 'artistsFromStore']),
     },
 
     watch: {
@@ -81,15 +82,14 @@ export default {
 
     methods: {
         showArtistName () {
+
             if (this.$route.params.artistName) {
                 return this.$route.params.artistName;
             }
+
             const artist = this.artistsFromStore.find(x => x.id === Number(this.$route.params.artistId));
 
             if (artist) return artist.title;
-
-            // if an artist with this id doesn't exist, show 404 page
-            this.$router.push({ name: 'NotFound' });
         }
     }
 

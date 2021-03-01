@@ -32,7 +32,7 @@
 
         <span
             role="button"
-            class="album__favorite_btn"
+            class="btn is-turquoise"
             :class="{'is-active': isFavorite}"
             @click="markAsFavorite()">
             {{ isFavorite ? 'Remove favorite' : 'Mark as favorite' }}
